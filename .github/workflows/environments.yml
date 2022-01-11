@@ -6,8 +6,16 @@ on:
       - main
 
 jobs:
+  deployment-staging:
+    runs-on: ubuntu-latest
+    environment: stagin
+    steps:
+      - name: deploy
+        run: echo "Deploy to stagin"
+
   deployment:
     runs-on: ubuntu-latest
+    needs: [deployment-staging]
     environment: prod
     steps:
       - name: deploy
